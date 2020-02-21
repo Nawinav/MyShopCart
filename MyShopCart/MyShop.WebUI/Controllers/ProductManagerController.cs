@@ -7,7 +7,7 @@ using MyShop.Core;
 using MyShop.Core.Models;
 using MyShop.Core.ViewModel;
 using MyShop.DataAccess.InMemory;
-using MyShop.DataAccess.SQL;
+
 using MyShop.Services;
 using MyShop.Core.Contracts;
 

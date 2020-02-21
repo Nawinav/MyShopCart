@@ -5,10 +5,12 @@ using System.Linq;
 using System.Runtime.Caching;
 using System.Text;
 using System.Threading.Tasks;
+using MyShop.Core;
+using MyShop.Core.Contracts;
 
 namespace MyShop.DataAccess.InMemory
 {
-    public class InMemoryRepository<T> where T:BaseEntity
+    public class InMemoryRepository<T> : IRepository<T> where T : BaseEntity
     {
         ObjectCache cache = MemoryCache.Default;
         List<T> items;
@@ -41,10 +43,10 @@ namespace MyShop.DataAccess.InMemory
             }
             else
             {
-                throw new Exception (className + "not Found");
+                throw new Exception(className + "not Found");
             }
 
-        } 
+        }
         public T Find(string Id)
         {
             T t = items.Find(i => i.Id == Id);
@@ -52,7 +54,8 @@ namespace MyShop.DataAccess.InMemory
             {
                 return t;
             }
-            else{
+            else
+            {
                 throw new Exception(className + "not Found");
             }
 
@@ -61,7 +64,8 @@ namespace MyShop.DataAccess.InMemory
         {
             return items.AsQueryable();
         }
-        public void Delete(string Id) {
+        public void Delete(string Id)
+        {
             T tToDelete = items.Find(i => i.Id == Id);
             if (tToDelete != null)
             {
@@ -71,7 +75,7 @@ namespace MyShop.DataAccess.InMemory
             {
                 throw new Exception(className + "not Found");
             }
-        
+
 
         }
     }
